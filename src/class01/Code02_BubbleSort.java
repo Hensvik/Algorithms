@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Code02_BubbleSort {
 
+	//冒泡排序主体
 	public static void bubbleSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;

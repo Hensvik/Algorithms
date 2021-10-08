@@ -1,5 +1,8 @@
 package class08;
 
+//汉诺塔问题
+//
+//down：减少的
 public class Code01_Hanoi {
 
 	public static void hanoi(int n) {
@@ -19,7 +22,7 @@ public class Code01_Hanoi {
 	}
 
 	public static void main(String[] args) {
-		int n = 3;
+		int n = 4;
 		hanoi(n);
 	}
 

@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Code01_SelectionSort {
 
+	// 选择排序主体
 	public static void selectionSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -17,6 +18,7 @@ public class Code01_SelectionSort {
 		}
 	}
 
+	// 数组交换
 	public static void swap(int[] arr, int i, int j) {
 		int tmp = arr[i];
 		arr[i] = arr[j];
@@ -24,11 +26,13 @@ public class Code01_SelectionSort {
 	}
 
 	// for test
+	//比较器
 	public static void comparator(int[] arr) {
 		Arrays.sort(arr);
 	}
 
 	// for test
+	// 生成默认数组
 	public static int[] generateRandomArray(int maxSize, int maxValue) {
 		int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
 		for (int i = 0; i < arr.length; i++) {
@@ -38,6 +42,7 @@ public class Code01_SelectionSort {
 	}
 
 	// for test
+	// 数组复制
 	public static int[] copyArray(int[] arr) {
 		if (arr == null) {
 			return null;
@@ -50,6 +55,7 @@ public class Code01_SelectionSort {
 	}
 
 	// for test
+	// 数组比较
 	public static boolean isEqual(int[] arr1, int[] arr2) {
 		if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
 			return false;
@@ -69,6 +75,7 @@ public class Code01_SelectionSort {
 	}
 
 	// for test
+	// 数组打印
 	public static void printArray(int[] arr) {
 		if (arr == null) {
 			return;
