@@ -12,6 +12,7 @@ public class Code02_RadixSort {
 		radixSort(arr, 0, arr.length - 1, maxbits(arr));
 	}
 
+	//获取
 	public static int maxbits(int[] arr) {
 		int max = Integer.MIN_VALUE;
 		for (int i = 0; i < arr.length; i++) {
@@ -25,10 +26,11 @@ public class Code02_RadixSort {
 		return res;
 	}
 
+	//arr[begin..end]排序
 	public static void radixSort(int[] arr, int begin, int end, int digit) {
 		final int radix = 10;
 		int i = 0, j = 0;
-
+		//有多少个数准备多少个辅助空间
 		int[] bucket = new int[end - begin + 1];
 		for (int d = 1; d <= digit; d++) {
 			int[] count = new int[radix];

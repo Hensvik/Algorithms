@@ -2,7 +2,10 @@ package class03;
 
 import java.util.Arrays;
 
+//桶排序，高复杂度
 public class Code01_CountSort {
+
+	static int count;
 
 	// only for 0~200 value
 	public static void countSort(int[] arr) {
@@ -10,19 +13,24 @@ public class Code01_CountSort {
 			return;
 		}
 		int max = Integer.MIN_VALUE;
+		//遍历获取arr[i]的最大值
 		for (int i = 0; i < arr.length; i++) {
 			max = Math.max(max, arr[i]);
 		}
 		int[] bucket = new int[max + 1];
+		//将arr放入bucket
 		for (int i = 0; i < arr.length; i++) {
 			bucket[arr[i]]++;
 		}
 		int i = 0;
+		//将bucket中的读取回到arr
 		for (int j = 0; j < bucket.length; j++) {
 			while (bucket[j]-- > 0) {
 				arr[i++] = j;
 			}
 		}
+		System.out.println("count="+ count++);
+		printArray(arr);
 	}
 
 	// for test

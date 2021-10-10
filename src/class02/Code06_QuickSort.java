@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Code06_QuickSort {
 
+	//这是3.0版本的快速排序，分为3个部分，分别是<p ==p >p的三部分
 	public static void quickSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -13,20 +14,30 @@ public class Code06_QuickSort {
 
 	public static void quickSort(int[] arr, int l, int r) {
 		if (l < r) {
+			//随机选择一个数并与最后一个数做交换
+			//注意：Math.random()的取值为0-1
+			//所以这里的选择范围为l-r其中一个随机数与r交换
 			swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+			//此时r为随机选取的数
+			//返回p的长度一定为2，且p中的两个值分别为分界<p和==p，以及分界==p和>p的数
 			int[] p = partition(arr, l, r);
-			quickSort(arr, l, p[0] - 1);
-			quickSort(arr, p[1] + 1, r);
+			quickSort(arr, l, p[0] - 1);		//“小于”区域排序
+			quickSort(arr, p[1] + 1, r);		//“大于”区域排序
 		}
 	}
 
+	//这是一个处理arr[l...r]的函数
+	//默认以arr[r]作划分，arr[r]--> p 划分为 <p ==p >p 和 p
+	//返回等于区域（左边界，右边界），所以返回一个长度为2的数组
 	public static int[] partition(int[] arr, int l, int r) {
-		int less = l - 1;
-		int more = r;
+		int less = l - 1;	//记录<区的右边界
+		int more = r;		//记录>区的左边界
 		while (l < more) {
 			if (arr[l] < arr[r]) {
+				//交换当前左边界和arr[l]的位置，同时l++进行循环
 				swap(arr, ++less, l++);
 			} else if (arr[l] > arr[r]) {
+				//交换当前右边界和arr[l]的位置，将大于边界的数组移动到最右边
 				swap(arr, --more, l);
 			} else {
 				l++;

@@ -2,6 +2,7 @@ package class01;
 
 public class Code04_BSExist {
 
+	//二分法查找某数是否存在
 	public static boolean exist(int[] sortedArr, int num) {
 		if (sortedArr == null || sortedArr.length == 0) {
 			return false;
