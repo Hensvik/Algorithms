@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Code03_HeapSort {
 
+	//堆排序
 	public static void heapSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -12,29 +13,40 @@ public class Code03_HeapSort {
 			heapInsert(arr, i);
 		}
 		int size = arr.length;
+		//第0和size位（即最小值和最大值）交换位置，然后size--推出最大值，持续进行堆化操作
 		swap(arr, 0, --size);
 		while (size > 0) {
+			//让堆重新变为大根堆，即将0从堆顶有一次移动到堆底
 			heapify(arr, 0, size);
 			swap(arr, 0, --size);
 		}
 	}
 
+	//堆插入内容（这里依旧是数组，但是按照大根堆排序）
 	public static void heapInsert(int[] arr, int index) {
+		//左孩子节点>父节点 则交换，然后index修改为父节点
 		while (arr[index] > arr[(index - 1) / 2]) {
 			swap(arr, index, (index - 1) /2);
 			index = (index - 1)/2 ;
 		}
 	}
 
+	//将数组堆化 为大根堆
 	public static void heapify(int[] arr, int index, int size) {
+		//left为新建的左孩子节点的序号
 		int left = index * 2 + 1;
+		//当left<size
 		while (left < size) {
+			//右节点也未超size 且 右节点>左节点 则最大值设为右节点，否则为左节点（左右节点比较）
 			int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
+			//同上，左右孩子节点大者和父节点比较
 			largest = arr[largest] > arr[index] ? largest : index;
 			if (largest == index) {
 				break;
 			}
+			//交换largest和index
 			swap(arr, largest, index);
+			//index修改为最大值
 			index = largest;
 			left = index * 2 + 1;
 		}

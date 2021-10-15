@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Code01_MergeSort {
 
+	//归并排序
 	public static void mergeSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -15,26 +16,34 @@ public class Code01_MergeSort {
 		if (l == r) {
 			return;
 		}
+		//取中值
 		int mid = l + ((r - l) >> 1);
+		//递归获取l到mid的
 		mergeSort(arr, l, mid);
 		mergeSort(arr, mid + 1, r);
 		merge(arr, l, mid, r);
 	}
 
 	public static void merge(int[] arr, int l, int m, int r) {
+		//新建数组
 		int[] help = new int[r - l + 1];
 		int i = 0;
 		int p1 = l;
 		int p2 = m + 1;
+		//当p1<=中值m 中值+1<=r时
 		while (p1 <= m && p2 <= r) {
+			//help数组循环获取两者的小值，并遍历
 			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
 		}
+		//下面两段表示 (p1 <= m && p2 <= r) 这个条件中有其中一个不满足，则将满足条件方剩余未遍历完的部分全部添加到help数组里
 		while (p1 <= m) {
 			help[i++] = arr[p1++];
 		}
 		while (p2 <= r) {
 			help[i++] = arr[p2++];
 		}
+
+		//遍历将help添加回arr
 		for (i = 0; i < help.length; i++) {
 			arr[l + i] = help[i];
 		}

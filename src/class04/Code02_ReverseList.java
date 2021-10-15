@@ -1,5 +1,6 @@
 package class04;
 
+//反转链表
 public class Code02_ReverseList {
 
 	public static class Node {
@@ -11,13 +12,18 @@ public class Code02_ReverseList {
 		}
 	}
 
+	//反转单链表
 	public static Node reverseList(Node head) {
 		Node pre = null;
 		Node next = null;
 		while (head != null) {
+			//next节点置为head节点的next节点
 			next = head.next;
+			//head节点的next节点置为pre(null)
 			head.next = pre;
+			//将pre节点设置为head节点
 			pre = head;
+			//将head节点设置为next节点
 			head = next;
 		}
 		return pre;
@@ -33,6 +39,7 @@ public class Code02_ReverseList {
 		}
 	}
 
+	//反转双链表
 	public static DoubleNode reverseList(DoubleNode head) {
 		DoubleNode pre = null;
 		DoubleNode next = null;
@@ -46,6 +53,7 @@ public class Code02_ReverseList {
 		return pre;
 	}
 
+	//打印链表
 	public static void printLinkedList(Node head) {
 		System.out.print("Linked List: ");
 		while (head != null) {
@@ -55,6 +63,7 @@ public class Code02_ReverseList {
 		System.out.println();
 	}
 
+	//打印双链表
 	public static void printDoubleLinkedList(DoubleNode head) {
 		System.out.print("Double Linked List: ");
 		DoubleNode end = null;

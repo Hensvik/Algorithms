@@ -2,6 +2,8 @@ package class02;
 
 public class Code02_SmallSum {
 
+	//小和问题：一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组
+	//的小和。求一个数组 的小和。
 	public static int smallSum(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
@@ -26,6 +28,7 @@ public class Code02_SmallSum {
 		int p2 = m + 1;
 		int res = 0;
 		while (p1 <= m && p2 <= r) {
+			//如果左边的值比右边小，则计算若干个左边的值
 			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0;
 			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
 		}

@@ -2,6 +2,7 @@ package class05;
 
 import java.util.Stack;
 
+//树的遍历算法
 public class Code01_PreInPosTraversal {
 
 	public static class Node {
@@ -14,6 +15,7 @@ public class Code01_PreInPosTraversal {
 		}
 	}
 
+	//打印先序遍历
 	public static void preOrderRecur(Node head) {
 		if (head == null) {
 			return;
@@ -23,6 +25,7 @@ public class Code01_PreInPosTraversal {
 		preOrderRecur(head.right);
 	}
 
+	//中序遍历
 	public static void inOrderRecur(Node head) {
 		if (head == null) {
 			return;
@@ -32,6 +35,7 @@ public class Code01_PreInPosTraversal {
 		inOrderRecur(head.right);
 	}
 
+	//后序遍历
 	public static void posOrderRecur(Node head) {
 		if (head == null) {
 			return;
@@ -41,17 +45,22 @@ public class Code01_PreInPosTraversal {
 		System.out.print(head.value + " ");
 	}
 
+	//利用堆实现先序遍历
 	public static void preOrderUnRecur(Node head) {
 		System.out.print("pre-order: ");
+		//如果head节点不为null，则加入堆中
 		if (head != null) {
 			Stack<Node> stack = new Stack<Node>();
 			stack.add(head);
+			//当堆不为空，令head为堆中弹出的数
 			while (!stack.isEmpty()) {
 				head = stack.pop();
 				System.out.print(head.value + " ");
+				//当弹出的数的右节点不为null，则往堆中推入
 				if (head.right != null) {
 					stack.push(head.right);
 				}
+				//当弹出的数的左节点不为null，则往堆中推入
 				if (head.left != null) {
 					stack.push(head.left);
 				}
@@ -60,6 +69,7 @@ public class Code01_PreInPosTraversal {
 		System.out.println();
 	}
 
+	//利用堆实现中序遍历
 	public static void inOrderUnRecur(Node head) {
 		System.out.print("in-order: ");
 		if (head != null) {
@@ -78,6 +88,7 @@ public class Code01_PreInPosTraversal {
 		System.out.println();
 	}
 
+	//利用堆实现后序遍历
 	public static void posOrderUnRecur1(Node head) {
 		System.out.print("pos-order: ");
 		if (head != null) {
@@ -101,6 +112,7 @@ public class Code01_PreInPosTraversal {
 		System.out.println();
 	}
 
+	//
 	public static void posOrderUnRecur2(Node h) {
 		System.out.print("pos-order: ");
 		if (h != null) {

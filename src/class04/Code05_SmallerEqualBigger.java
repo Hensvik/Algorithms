@@ -1,5 +1,6 @@
 package class04;
 
+//使链表根据某个数字进行分类，且相对位置不变
 public class Code05_SmallerEqualBigger {
 
 	public static class Node {
@@ -70,6 +71,8 @@ public class Code05_SmallerEqualBigger {
 			next = head.next;
 			head.next = null;
 			if (head.value < pivot) {
+				//如果某个值<pivot，且<部分为空，则置<部分都为head
+				//否则置sT的下一位为head,ST本身也设置为head（最后再处理相连的问题）
 				if (sH == null) {
 					sH = head;
 					sT = head;
@@ -77,6 +80,8 @@ public class Code05_SmallerEqualBigger {
 					sT.next = head;
 					sT = head;
 				}
+				//如果某个值==pivot，且=部分为空，则置=部分都为head
+				//同理
 			} else if (head.value == pivot) {
 				if (eH == null) {
 					eH = head;
@@ -85,6 +90,7 @@ public class Code05_SmallerEqualBigger {
 					eT.next = head;
 					eT = head;
 				}
+				//如果某个值>pivot，且>部分为空，则置>部分都为head
 			} else {
 				if (bH == null) {
 					bH = head;
@@ -96,11 +102,13 @@ public class Code05_SmallerEqualBigger {
 			}
 			head = next;
 		}
+		//逻辑处理<部分与==部分的链接
 		// small and equal reconnect
 		if (sT != null) {
 			sT.next = eH;
 			eT = eT == null ? sT : eT;
 		}
+		//逻辑处理==部分与>部分的链接
 		// all reconnect
 		if (eT != null) {
 			eT.next = bH;
