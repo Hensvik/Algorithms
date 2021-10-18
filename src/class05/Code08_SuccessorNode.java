@@ -1,7 +1,9 @@
 package class05;
 
+//找到一个节点的后继节点
 public class Code08_SuccessorNode {
 
+	//该节点比较特殊，记录了父节点的信息
 	public static class Node {
 		public int value;
 		public Node left;
@@ -14,12 +16,15 @@ public class Code08_SuccessorNode {
 	}
 
 	public static Node getSuccessorNode(Node node) {
+		//如果节点为null，返回该节点
 		if (node == null) {
 			return node;
 		}
+		//如果该节点的右节点不为空，获取该右节点的最深左节点
 		if (node.right != null) {
 			return getLeftMost(node.right);
 		} else {
+			//获取当前节点的父节点，当父节点不为空且父节点的左子节点不为当前节点，获取当前节点的父节点
 			Node parent = node.parent;
 			while (parent != null && parent.left != node) {
 				node = parent;
@@ -29,10 +34,13 @@ public class Code08_SuccessorNode {
 		}
 	}
 
+	//获取某个节点的最深左节点
 	public static Node getLeftMost(Node node) {
+		//如果节点为空，返回该节点
 		if (node == null) {
 			return node;
 		}
+		//当左节点不为空，遍历查询所有的左节点
 		while (node.left != null) {
 			node = node.left;
 		}

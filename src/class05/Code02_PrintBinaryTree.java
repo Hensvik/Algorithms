@@ -1,5 +1,6 @@
 package class05;
 
+//打印树的方法
 public class Code02_PrintBinaryTree {
 
 	public static class Node {

@@ -3,6 +3,7 @@ package class05;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+//求树的最大宽度
 public class Code03_TreeMaxWidth {
 
 	public static class Node {
@@ -23,6 +24,7 @@ public class Code03_TreeMaxWidth {
 		int curWidth = 0;
 		int curLevel = 0;
 		HashMap<Node, Integer> levelMap = new HashMap<>();
+		//放入树的顶节点
 		levelMap.put(head, 1);
 		LinkedList<Node> queue = new LinkedList<>();
 		queue.add(head);

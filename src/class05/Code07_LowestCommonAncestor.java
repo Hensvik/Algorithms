@@ -3,6 +3,7 @@ package class05;
 import java.util.HashMap;
 import java.util.HashSet;
 
+//获取任意两个节点的最小公共节点
 public class Code07_LowestCommonAncestor {
 
 	public static class Node {
@@ -15,12 +16,17 @@ public class Code07_LowestCommonAncestor {
 		}
 	}
 
+	//左右节点都为空返回null，存在子节点不为空则范围自身，以此找到交汇点
 	public static Node lowestAncestor(Node head, Node o1, Node o2) {
+		//如果头节点为空或者遍历到的头节点为o1或者o2，则返回头节点
 		if (head == null || head == o1 || head == o2) {
 			return head;
 		}
+		//递归遍历整棵树
 		Node left = lowestAncestor(head.left, o1, o2);
 		Node right = lowestAncestor(head.right, o1, o2);
+		//如果左右子节点不为空，返回头节点
+		//否则返回不为空的一方
 		if (left != null && right != null) {
 			return head;
 		}
@@ -28,6 +34,7 @@ public class Code07_LowestCommonAncestor {
 	}
 
 	// ��������--����һ
+	//
 	public static class Record1 {
 		private HashMap<Node, Node> map;
 

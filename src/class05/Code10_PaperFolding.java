@@ -1,5 +1,6 @@
 package class05;
 
+//折纸问题的折痕判断
 public class Code10_PaperFolding {
 
 	public static void printAllFolds(int N) {
@@ -7,6 +8,7 @@ public class Code10_PaperFolding {
 	}
 
 	public static void printProcess(int i, int N, boolean down) {
+		//判断i不能超过范围
 		if (i > N) {
 			return;
 		}

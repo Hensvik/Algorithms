@@ -3,6 +3,7 @@ package class05;
 import java.util.LinkedList;
 import java.util.Queue;
 
+//树结构序列化
 public class Code09_SerializeAndReconstructTree {
 
 	public static class Node {
