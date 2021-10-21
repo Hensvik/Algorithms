@@ -2,6 +2,7 @@ package class05;
 
 import java.util.LinkedList;
 
+//
 public class Code05_IsCBT {
 
 	public static class Node {

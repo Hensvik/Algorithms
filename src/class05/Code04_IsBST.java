@@ -2,6 +2,8 @@ package class05;
 
 import java.util.LinkedList;
 
+//判断是否是二叉排序树
+//左节点小于根节点，右节点大于根节点
 public class Code04_IsBST {
 
 	public static class Node {
@@ -30,6 +32,7 @@ public class Code04_IsBST {
 		return true;
 	}
 
+	//中序递归遍历
 	public static void process(Node node, LinkedList<Node> inOrderList) {
 		if (node == null) {
 			return;
