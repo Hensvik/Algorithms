@@ -1,22 +1,28 @@
 package class08;
 
+//给定两个长度都为N的数组weights和values，weights[i]和values[i]分别代表
+//i号物品的重量和价值。给定一个正数bag，表示一个载重bag的袋子，你装的物
+//品不能超过这个重量。返回你能装下最多的价值是多少？
 public class Code07_Knapsack {
 
 	public static int maxValue1(int[] weights, int[] values, int bag) {
 		return process1(weights, values, 0, 0, bag);
 	}
 
+	//i...的货物自由选择，形成最大的价值返回
 	public static int process1(int[] weights, int[] values, int i, int alreadyweight, int bag) {
+		//当已装的重量超过bag，即超重了，则返回0
 		if (alreadyweight > bag) {
 			return 0;
 		}
+		//当i已经超过重量表的长度，意味着都装不下
 		if (i == weights.length) {
 			return 0;
 		}
 		return Math.max(
-
+				//递归判断i+1的情况
 				process1(weights, values, i + 1, alreadyweight, bag),
-
+				//递归判断i商品的价值放入后，i+1商品的递归的情况
 				values[i] + process1(weights, values, i + 1, alreadyweight + weights[i], bag));
 	}
 

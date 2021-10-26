@@ -3,6 +3,7 @@ package class08;
 import java.util.ArrayList;
 import java.util.List;
 
+//打印一个字符串的全部子序列，包括空字符串
 public class Code02_PrintAllSubsquences {
 
 	public static void printAllSubsquence(String str) {
@@ -10,14 +11,18 @@ public class Code02_PrintAllSubsquences {
 		process(chs, 0);
 	}
 
+	//当前来到i位置
 	public static void process(char[] chs, int i) {
+		//如果i已经抵达终止位置，直接打印值
 		if (i == chs.length) {
 			System.out.println(String.valueOf(chs));
 			return;
 		}
+		//新增下一个字符进入考虑范围，并把之前的字符串也考虑进去
 		process(chs, i + 1);
 		char tmp = chs[i];
 		chs[i] = 0;
+		//不要当前字符的路
 		process(chs, i + 1);
 		chs[i] = tmp;
 	}
@@ -26,7 +31,9 @@ public class Code02_PrintAllSubsquences {
 		char[] chs = str.toCharArray();
 		process(chs, 0, new ArrayList<Character>());
 	}
-	
+
+	//当前来到i位置，要和不要，走两条路
+	//之前的选择，所形成的列表
 	public static void process(char[] chs, int i, List<Character> res) {
 		if(i == chs.length) {
 			printList(res);

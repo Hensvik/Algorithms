@@ -1,12 +1,14 @@
 package class07;
 
-//构建前缀树
+//前缀树
+//前缀树是N叉树的一种特殊形式。通常来说，一个前缀树是用来存储字符串的。前缀树的每一个节点代表一个字符串（前缀）。
+// 每一个节点会有多个子节点，通往不同子节点的路径上有着不同的字符。子节点代表的字符串是由节点本身的原始字符串，以及通往该子节点路径上所有的字符组成的。
 public class Code01_TrieTree {
 
 	public static class TrieNode {
-		//记录通过该节点的次数
+		//path个通过该节点的路径数量
 		public int path;
-		//记录结尾为该节点的次数
+		//end个字符串的结尾节点
 		public int end;
 		//记录后续节点？
 		public TrieNode[] nexts;

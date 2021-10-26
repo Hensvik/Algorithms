@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+//意即由此算法搜索到的边子集所构成的树中，不但包括了连通图里的所有顶点，且其所有边的权值之和亦为最小
 // undirected graph only
 public class Code05_Prim {
 
@@ -18,22 +19,29 @@ public class Code05_Prim {
 	}
 
 	public static Set<Edge> primMST(Graph graph) {
+		//解锁的边进入小根堆（优先队列）
 		PriorityQueue<Edge> priorityQueue = new PriorityQueue<>(
 				new EdgeComparator());
 		HashSet<Node> set = new HashSet<>();
-		Set<Edge> result = new HashSet<>();
-		for (Node node : graph.nodes.values()) {
+		Set<Edge> result = new HashSet<>();	//依次挑选的前边在result里
+		for (Node node : graph.nodes.values()) {	//随便挑选一个点
+			//如果set中不包含node，则将node加入set中
 			if (!set.contains(node)) {
 				set.add(node);
-				for (Edge edge : node.edges) {
+				//获取node的所有边
+				for (Edge edge : node.edges) {		//由一个点解锁所有相连的边
 					priorityQueue.add(edge);
 				}
+				//当小根堆不为空时
 				while (!priorityQueue.isEmpty()) {
+					//推出边edge，令toNode等于edge的出点
 					Edge edge = priorityQueue.poll();
 					Node toNode = edge.to;
+					//如果set中不包含了这个出点，就加入set中，同时将边edge加入结果集result
 					if (!set.contains(toNode)) {
 						set.add(toNode);
 						result.add(edge);
+						//遍历
 						for (Edge nextEdge : toNode.edges) {
 							priorityQueue.add(nextEdge);
 						}
