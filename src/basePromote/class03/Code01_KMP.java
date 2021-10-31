@@ -14,6 +14,10 @@ public class Code01_KMP {
 		int i1 = 0;
 		int i2 = 0;
 		int[] next = getNextArray(str2);
+		for (int n: next) {
+			System.out.print(n+" ");
+		}
+		System.out.println("");
 		while (i1 < str1.length && i2 < str2.length) {
 			if (str1[i1] == str2[i2]) {
 				i1++;
@@ -32,14 +36,15 @@ public class Code01_KMP {
 			return new int[] { -1 };
 		}
 		int[] next = new int[ms.length];
+		//人为规定0位置-1,1位置为0
 		next[0] = -1;
 		next[1] = 0;
-		int i = 2;
+		int i = 2;	//next数组的位置
 		int cn = 0;
 		while (i < next.length) {
-			if (ms[i - 1] == ms[cn]) {
+			if (ms[i - 1] == ms[cn]) {		//i-1与cn位置比较，如果相等，next[i]改为cn+1
 				next[i++] = ++cn;
-			} else if (cn > 0) {
+			} else if (cn > 0) {	//当前跳到cn位置的字符，和i-1位置的字符匹配不上
 				cn = next[cn];
 			} else {
 				next[i++] = 0;
@@ -49,8 +54,8 @@ public class Code01_KMP {
 	}
 
 	public static void main(String[] args) {
-		String str = "abcabcababaccc";
-		String match = "ababa";
+		String str = "abbtabbzcabbtabbe";
+		String match = "cabbtabbe";
 		System.out.println(getIndexOf(str, match));
 
 	}
