@@ -13,17 +13,23 @@ public class Code01_KMP {
 		char[] str2 = m.toCharArray();
 		int i1 = 0;
 		int i2 = 0;
+		//next为指定i2下一个跳跃节点的数量，即往前跳next[i]个字符再进行比较
 		int[] next = getNextArray(str2);
+		//要求i1和i2均不越界
 		while (i1 < str1.length && i2 < str2.length) {
+			//如果str1和str2来到共同字符，二者均++
 			if (str1[i1] == str2[i2]) {
 				i1++;
 				i2++;
+				//next[i2] == -1表示已经越界
 			} else if (next[i2] == -1) {
 				i1++;
+				//i2可以继续往前跳
 			} else {
 				i2 = next[i2];
 			}
 		}
+		//i1越界或者i2越界了，返回
 		return i2 == str2.length ? i1 - i2 : -1;
 	}
 
