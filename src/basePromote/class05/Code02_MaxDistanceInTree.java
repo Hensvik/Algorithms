@@ -16,7 +16,8 @@ public class Code02_MaxDistanceInTree {
 		int[] record = new int[1];
 		return posOrder(head, record);
 	}
-	
+
+	//h记录树的最大高度
 	public static class ReturnType{
 		public int maxDistance;
 		public int h;
@@ -26,16 +27,19 @@ public class Code02_MaxDistanceInTree {
 			this.h = h;
 		}
 	}
-	
+
+	//返回以x为头的整棵树，两个信息
 	public static ReturnType process(Node head) {
 		if(head == null) {
 			return new ReturnType(0,0);
 		}
 		ReturnType leftReturnType = process(head.left);
 		ReturnType rightReturnType = process(head.right);
+		//includeHeadDistance=左树高+右树高+1
 		int includeHeadDistance = leftReturnType.h + 1 + rightReturnType.h;
 		int p1 = leftReturnType.maxDistance;
 		int p2 = rightReturnType.maxDistance;
+		//结果距离为新的p1和p2中和当前节点
 		int resultDistance = Math.max(Math.max(p1, p2), includeHeadDistance);
 		int hitself  = Math.max(leftReturnType.h, leftReturnType.h) + 1;
 		return new ReturnType(resultDistance, hitself);
