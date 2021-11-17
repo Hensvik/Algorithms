@@ -1,7 +1,15 @@
 package basePromote.class06;
 
+//给定两个有符号32位整数a和b，不能使用算术运算符，分别实现a和b的加、减、乘、除运算
+//【要求】
+//如果给定a、b执行加减乘除的运算结果就会导致数据的溢出，那么你实现的函数不必对此
+//负责，除此之外请保证计算过程不发生溢出
 public class Code03_AddMinusMultiDivideByBit {
 
+	//加法思路：1.取异或得各位数相加信息；2.取与得各位数进位信息；
+	//二者再重复上述1和2，发现不产生进位信息时，异或结果即为答案
+
+	//如果溢出，用户活该
 	public static int add(int a, int b) {
 		int sum = a;
 		while (b != 0) {
@@ -12,14 +20,19 @@ public class Code03_AddMinusMultiDivideByBit {
 		return sum;
 	}
 
+	//相反数
 	public static int negNum(int n) {
 		return add(~n, 1);
 	}
 
+	//减法思路：
+	//a加上b的相反数，即a+( ~b+1)
 	public static int minus(int a, int b) {
 		return add(a, negNum(b));
 	}
 
+	//乘法思路：
+	//类比乘法计算思路：根据其中一个数的每一位1的位置对另一个数字进行左移位并累加
 	public static int multi(int a, int b) {
 		int res = 0;
 		while (b != 0) {
@@ -36,6 +49,13 @@ public class Code03_AddMinusMultiDivideByBit {
 		return n < 0;
 	}
 
+	//除法思路：
+	//1.被除数左移至极限小于除数的位置
+	//2.然后除数减去这个数
+	//被除数重置
+	//将得到的数重复上述流程至得到的数小于被除数为止
+
+	//以下方法考虑了负数相除的情况
 	public static int div(int a, int b) {
 		int x = isNeg(a) ? negNum(a) : a;
 		int y = isNeg(b) ? negNum(b) : b;

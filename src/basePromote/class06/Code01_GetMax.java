@@ -11,19 +11,35 @@ public class Code01_GetMax {
 	}
 
 	public static int getMax1(int a, int b) {
+		//注意此处可能会溢出
 		int c = a - b;
 		int scA = sign(c);
 		int scB = flip(scA);
+		//此时scA和scB其中一个为0，一个为1
 		return a * scA + b * scB;
 	}
 
+	//解决getMax1的可能存在的溢出问题
 	public static int getMax2(int a, int b) {
 		int c = a - b;
+		//分别记录abc的状态
 		int sa = sign(a);
 		int sb = sign(b);
 		int sc = sign(c);
+		//记录sa和sb的异或，如果sa和sb不一样，则为1,；一样，则为0
 		int difSab = sa ^ sb;
+		//sa和sb的符号一样，为1；不一样，为0
 		int sameSab = flip(difSab);
+
+		//注意此时a和b如果符号相同，则a-b不会溢出
+		//返回a的情况：reaturnA=1,returnB=0
+		// 			1)a和b相同符号且a-b>=0;此时difSab=0，sameSab=1,则sc也必须为1即c必须a>b
+		// 			2)a和b符号不相同并且a>0;此时difSab=1，sameSab=0，则sc无所谓但sa必须为1即a必须>0
+
+		//返回b的情况:returnA=0,returnB=1
+		//			1)a和b相同符号a-b<0;此时difSab=0，sameSab=1,sa无所谓，但sc必须为0即必须a<b
+		//			2)a和b符号不相同并且a<0;此时difSab=1，sameSab=0，则sc无所谓但a必须<0
+
 		int returnA = difSab * sa + sameSab * sc;
 		int returnB = flip(returnA);
 		return a * returnA + b * returnB;
