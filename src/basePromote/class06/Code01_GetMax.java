@@ -1,20 +1,28 @@
 package basePromote.class06;
 
+//位运算的题目
+//给定两个有符号32位整数a和b，返回a和b中较大的。
+//【要求】
+//不用做任何比较判断。
 public class Code01_GetMax {
 
+	//取反
 	public static int flip(int n) {
 		return n ^ 1;
 	}
 
+	//n是非负数，返回1
+	//n是负数，返回0
 	public static int sign(int n) {
 		return flip((n >> 31) & 1);
 	}
 
 	public static int getMax1(int a, int b) {
 		//注意此处可能会溢出
-		int c = a - b;
-		int scA = sign(c);
-		int scB = flip(scA);
+		int c = a - b;				//取差
+		int scA = sign(c);			//a-b为非负数，scA为1；a-b为负数，scA为0
+		int scB = flip(scA);		//scA为0，scB为1；scA为1，scB为0
+		// scA为0，scB为1；scA为1，scB必为0
 		//此时scA和scB其中一个为0，一个为1
 		return a * scA + b * scB;
 	}
