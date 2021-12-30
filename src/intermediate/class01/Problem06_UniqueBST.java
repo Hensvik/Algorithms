@@ -21,9 +21,9 @@ public class Problem06_UniqueBST {
 		}
 		int[] num = new int[n + 1];
 		num[0] = 1;
-		for (int i = 1; i < n + 1; i++) {
-			for (int j = 1; j < i + 1; j++) {
-				num[i] += num[j - 1] * num[i - j];
+		for (int i = 1; i < n + 1; i++) {		//节点个数为i的时候
+			for (int j = 1; j < i + 1; j++) {		//左侧节点个数为j-1，右侧节点个数位i-j
+				num[i] += num[j - 1] * num[i - j];		//左侧节点数乘以右侧节点数
 			}
 		}
 		return num[n];
